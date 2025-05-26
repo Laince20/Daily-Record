@@ -1,0 +1,39 @@
+<view class="login-container">
+  <view class="logo-section">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <view class="app-title">AI日志</view>
+    <view class="app-subtitle">您的智能复盘助手</view>
+  </view>
+  
+  <view class="login-content">
+    <view class="slogan">通过AI引导式对话，轻松完成每日复盘</view>
+    
+    <view class="features">
+      <view class="feature-item">
+        <icon class="icon" type="success" size="18" color="#07c160"></icon>
+        <text>智能提问引导深入思考</text>
+      </view>
+      <view class="feature-item">
+        <icon class="icon" type="success" size="18" color="#07c160"></icon>
+        <text>自动生成结构化总结</text>
+      </view>
+      <view class="feature-item">
+        <icon class="icon" type="success" size="18" color="#07c160"></icon>
+        <text>构建个人知识图谱</text>
+      </view>
+    </view>
+    
+    <button 
+      class="login-btn {{loading ? 'loading' : ''}}" 
+      type="primary" 
+      bindtap="handleLogin"
+      loading="{{loading}}"
+    >
+      微信一键登录
+    </button>
+    
+    <view class="privacy-tip">
+      登录即表示同意<text class="highlight">《用户协议》</text>和<text class="highlight">《隐私政策》</text>
+    </view>
+  </view>
+</view> 

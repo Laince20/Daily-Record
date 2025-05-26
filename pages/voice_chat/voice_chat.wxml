@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="title">实时通话API测试</view>
+  
+  <view class="button-group">
+    <button bindtap="startChat" type="primary">开始对话</button>
+    <button bindtap="startRecording">开始录音</button>
+    <button bindtap="stopRecording">停止录音</button>
+    <button bindtap="closeChat" type="warn">关闭连接</button>
+  </view>
+  
+  <view class="log-container">
+    <view class="log-title">操作日志：</view>
+    <scroll-view scroll-y class="log-content">
+      <view wx:for="{{logs}}" wx:key="index" class="log-item">
+        {{item.time}} - {{item.msg}}
+      </view>
+    </scroll-view>
+  </view>
+</view> 

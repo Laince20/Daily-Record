@@ -1,0 +1,154 @@
+/* pages/index/index.wxss */
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f8;
+  padding: 0 30rpx;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.more-button {
+  margin-right: 20rpx;
+  font-size: 32rpx;
+}
+
+.camera-button {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.camera-icon {
+  font-size: 40rpx;
+}
+
+.user-info {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin: 30rpx 0;
+}
+
+.date {
+  color: #999;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.greeting-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.greeting {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+}
+
+.user-avatar-section {
+  margin-right: 20rpx;
+}
+
+.user-avatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  border: 2rpx solid #07c160;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.user-type {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.user-login {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+.login-btn {
+  font-size: 28rpx;
+  color: #07c160;
+  padding: 8rpx 24rpx;
+  border-radius: 30rpx;
+  border: 1px solid #07c160;
+  display: inline-block;
+}
+
+.menu-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  display: flex;
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.menu-icon {
+  font-size: 48rpx;
+  margin-right: 30rpx;
+}
+
+.menu-content {
+  flex: 1;
+}
+
+.menu-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.menu-desc {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.footer {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 测试页面入口样式 */
+.test-menu-item {
+  border: 1px dashed #1aad19;
+  background-color: rgba(26, 173, 25, 0.05);
+}
+
+.test-menu-item .menu-title {
+  color: #1aad19;
+} 

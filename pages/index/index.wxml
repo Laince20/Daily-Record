@@ -1,0 +1,63 @@
+<view class="container">
+  <view class="header">
+    <text class="title">日常复盘</text>
+    <view class="header-right">
+      <view class="more-button">
+        
+      </view>
+      
+    </view>
+  </view>
+
+  <view class="user-info">
+    <view class="date">{{currentDate}}</view>
+    <view class="greeting-section">
+      <view class="user-avatar-section" wx:if="{{isLogin && userInfo.avatarUrl}}" bindtap="handleAvatarTap">
+        <image class="user-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      </view>
+      <view class="greeting">{{randomGreeting}}</view>
+    </view>
+    <view class="user-login" wx:if="{{!isLogin}}" bindtap="goToLogin">
+      <view class="login-btn">点击登录</view>
+    </view>
+    <view class="user-type" wx:else>{{userInfo.nickName || '微信用户'}}</view>
+  </view>
+
+  <view class="menu-list">
+    <view class="menu-item" bindtap="navigateToChat">
+      <view class="menu-icon">✏️</view>
+      <view class="menu-content">
+        <view class="menu-title">今日笔记</view>
+        <view class="menu-desc">引导式对话，轻松完成每日复盘</view>
+      </view>
+    </view>
+
+    <view class="menu-item" bindtap="navigateToSummary">
+      <view class="menu-icon">📊</view>
+      <view class="menu-content">
+        <view class="menu-title">智慧洞察</view>
+        <view class="menu-desc">AI助你发现规律，提供成长建议</view>
+      </view>
+    </view>
+
+    <view class="menu-item" bindtap="navigateToHistory">
+      <view class="menu-icon">📅</view>
+      <view class="menu-content">
+        <view class="menu-title">时光回溯</view>
+        <view class="menu-desc">回顾成长足迹，发现时间里的自己</view>
+      </view>
+    </view>
+
+    <view class="menu-item test-menu-item" bindtap="navigateToVoiceChat">
+      <view class="menu-icon">🎤</view>
+      <view class="menu-content">
+        <view class="menu-title">语音对话测试</view>
+        <view class="menu-desc">测试扣子WebSocket实时语音对话API</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text>每一天都值得记录</text>
+  </view>
+</view> 

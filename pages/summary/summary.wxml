@@ -1,0 +1,104 @@
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-title">每日复盘</view>
+    <view class="nav-actions">
+      <view class="action-btn" bindtap="refreshSummary">
+        <text class="iconfont icon-refresh"></text>
+      </view>
+      <view class="action-btn" bindtap="shareSummary">
+        <text class="iconfont icon-share"></text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 日期选择器 -->
+  <view class="date-selector">
+    <picker mode="date" value="{{selectedDate}}" start="2023-01-01" end="{{todayDate}}" bindchange="dateChange">
+      <view class="date-display">
+        <text class="date-text">{{selectedDateDisplay}}</text>
+        <text class="iconfont icon-calendar"></text>
+      </view>
+    </picker>
+  </view>
+  
+  <!-- AI总结区域 -->
+  <view class="summary-section">
+    <view class="main-title">AI总结</view>
+    
+    <!-- 根据不同状态显示不同内容 -->
+    <block wx:if="{{summaryStatus === 'pending'}}">
+      <view class="summary-pending">
+        <text>今日总结将在24:00自动生成，敬请期待</text>
+      </view>
+    </block>
+    
+    <block wx:elif="{{summaryStatus === 'generating'}}">
+      <view class="summary-generating">
+        <text>总结生成中，请稍后查看...</text>
+      </view>
+    </block>
+    
+    <block wx:elif="{{hasSummary}}">
+      <view class="summary-content">
+        <!-- 整体概述 -->
+        <view class="content-block">
+          <view class="sub-title">整体概述</view>
+          <view class="content-text">{{summaryContent.overview}}</view>
+        </view>
+        
+        <!-- 主要事项 -->
+        <view class="content-block" wx:for="{{summaryContent.items}}" wx:key="title">
+          <view class="sub-title">{{item.title}}</view>
+          <view class="content-text">{{item.description}}</view>
+          <view class="thoughts-text">{{item.userThoughts}}</view>
+        </view>
+
+        <!-- 认知迭代 -->
+        <view class="content-block">
+          <view class="sub-title">认知迭代</view>
+          <view class="content-text">{{summaryContent.insights}}</view>
+        </view>
+
+        <!-- 建议 -->
+        <view class="content-block">
+          <view class="sub-title">建议</view>
+          <view class="content-text">{{summaryContent.suggestions}}</view>
+        </view>
+      </view>
+    </block>
+    
+    <block wx:else>
+      <view class="summary-empty">
+        <text>暂无总结内容</text>
+      </view>
+    </block>
+  </view>
+  
+  <!-- 会话列表区域 -->
+  <view class="sessions-section">
+    <view class="main-title">今日对话</view>
+    
+    <block wx:if="{{dayChatSessions.length > 0}}">
+      <view class="sessions-list">
+        <view class="session-card" wx:for="{{dayChatSessions}}" wx:key="sessionId" bindtap="viewSession" data-index="{{index}}">
+          <view class="session-header">
+            <view class="session-title">{{item.title || '未命名对话'}}</view>
+            <view class="session-time">{{item.timeString}}</view>
+          </view>
+          <view class="session-preview">{{item.preview}}</view>
+          <view class="session-footer">
+            <text class="session-tag" wx:if="{{item.tag}}">{{item.tag}}</text>
+            <text class="iconfont icon-arrow-right"></text>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <block wx:else>
+      <view class="sessions-empty">
+        <text>暂无对话记录</text>
+      </view>
+    </block>
+  </view>
+</view> 

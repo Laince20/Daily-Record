@@ -1,0 +1,64 @@
+<view class="container">
+  <view class="header">
+    <view class="title">历史记录</view>
+    <view class="subtitle">查看日常复盘记录</view>
+  </view>
+  
+  <!-- 日历组件 -->
+  <view class="calendar-container">
+    <view class="calendar-header">
+      <text class="month-text">{{currentYear}}年{{currentMonth}}月</text>
+      <view class="calendar-controls">
+        <text class="control-btn" bindtap="prevMonth">◀</text>
+        <text class="control-btn" bindtap="nextMonth">▶</text>
+      </view>
+    </view>
+    
+    <!-- 日历主体 -->
+    <view class="calendar-body">
+      <!-- 星期表头 -->
+      <view class="calendar-week">
+        <block wx:for="{{weekdays}}" wx:key="*this">
+          <view class="calendar-weekday">{{item}}</view>
+        </block>
+      </view>
+      
+      <!-- 日期单元格 -->
+      <view class="calendar-days">
+        <block wx:for="{{days}}" wx:key="index">
+          <view class="calendar-day-container {{item.month !== 'current' ? 'other-month' : ''}}">
+            <view class="calendar-day {{item.isToday ? 'today' : ''}} {{item.hasSummary ? 'has-summary' : ''}}" 
+                  bindtap="selectDate" 
+                  data-date="{{item.date}}">
+              <text>{{item.day}}</text>
+              <view wx:if="{{item.hasSummary}}" class="summary-dot"></view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 所选日期的总结 -->
+  <view class="summary-container" wx:if="{{selectedDate}}">
+    <view class="date-display">
+      <text>{{selectedDateDisplay}}</text>
+    </view>
+    
+    <!-- 日常总结内容 -->
+    <view class="summary-content" wx:if="{{hasSummary}}">
+      <view class="section-title">今日总结</view>
+      <view class="summary-text">{{summaryContent}}</view>
+      <view class="view-more" bindtap="viewDetail">
+        <text>查看详情</text>
+        <text class="arrow-text">></text>
+      </view>
+    </view>
+    
+    <!-- 无记录状态 -->
+    <view class="empty-state" wx:else>
+      <view class="empty-icon-placeholder"></view>
+      <view class="empty-text">当天没有对话记录</view>
+    </view>
+  </view>
+</view> 

@@ -1,0 +1,96 @@
+.container {
+  padding: 20rpx;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.log-container {
+  flex: 1;
+  border: 1rpx solid #ccc;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+
+.log-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  padding: 10rpx 20rpx;
+  background-color: #eee;
+}
+
+.log-content {
+  height: calc(100% - 50rpx);
+  padding: 10rpx;
+}
+
+.log-item {
+  font-size: 26rpx;
+  padding: 6rpx 0;
+  border-bottom: 1rpx solid #eee;
+  word-break: break-all;
+}
+
+.log-item.info {
+  color: #333;
+}
+
+.log-item.success {
+  color: #07c160;
+}
+
+.log-item.error {
+  color: #fa5151;
+}
+
+.log-item.warning {
+  color: #ff9900;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.button-group button {
+  margin: 10rpx;
+  flex-basis: 45%;
+  font-size: 28rpx;
+}
+
+.status-container {
+  border-top: 1rpx solid #eee;
+  padding-top: 20rpx;
+}
+
+.status-item {
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+
+.connected {
+  color: #07c160;
+}
+
+.disconnected {
+  color: #fa5151;
+}
+
+.recording {
+  color: #ff9900;
+}
+
+.active {
+  color: #07c160;
+} 

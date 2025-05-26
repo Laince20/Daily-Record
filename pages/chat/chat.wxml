@@ -1,0 +1,109 @@
+<view class="page-container">
+  <view class="container">
+    <!-- 头部导航栏 -->
+    <view class="nav-bar">
+      <view class="sidebar-btn" bindtap="showHistoryList">
+        <text class="sidebar-icon">≡</text>
+      </view>
+      <view class="nav-right">
+        <!-- 右侧可以放置其他按钮 -->
+      </view>
+    </view>
+    
+    <!-- 聊天消息区域 -->
+    <scroll-view class="chat-container" scroll-y="true" scroll-into-view="{{scrollToView}}" scroll-with-animation="{{true}}" enhanced="true" show-scrollbar="false">
+      <!-- 展示消息记录 -->
+      <block wx:for="{{messages}}" wx:key="index">
+        <!-- AI消息 -->
+        <view wx:if="{{item.role === 'ai'}}" class="message-row ai-row" id="msg-{{index}}">
+          <view class="avatar avatar-placeholder"></view>
+          <view class="message-bubble ai-message">{{item.content}}</view>
+        </view>
+        
+        <!-- 用户消息 -->
+        <view wx:else class="message-row user-row" id="msg-{{index}}">
+          <view class="message-bubble user-message">{{item.content}}</view>
+          <view class="avatar avatar-placeholder"></view>
+        </view>
+      </block>
+      
+      <!-- 占位元素，保证滚动到底部 -->
+      <view id="message-bottom" style="height: 30rpx;"></view>
+    </scroll-view>
+  </view>
+  
+  <!-- 底部输入区域固定在底部 -->
+  <view class="input-area" style="position: fixed; left: 0rpx; top: 1314rpx">
+    <!-- 文字输入模式 -->
+    <view class="message-input-container" wx:if="{{!isVoiceMode}}">
+      <view class="voice-mode-icon" bindtap="switchMode">
+        <text>🎤</text>
+      </view>
+      <input class="message-input" 
+             placeholder="输入问题，获取 AI 回答" 
+             value="{{inputValue}}" 
+             bindinput="inputChange" 
+             confirm-type="send" 
+             bindconfirm="sendMessage" 
+             focus="{{textFocus}}"
+             adjust-position="false"
+             cursor-spacing="20"/>
+      <view class="send-icon" bindtap="sendMessage">
+        <text class="send-arrow">➤</text>
+      </view>
+    </view>
+    
+    <!-- 语音输入模式 -->
+    <view class="voice-input-container" wx:else>
+      <view class="press-talk-text {{isRecording ? 'recording' : ''}}" 
+            bindtouchstart="startRecording" 
+            bindtouchend="stopRecording"
+            bindtouchmove="moveRecording"
+            bindtouchcancel="cancelRecording">
+        {{isRecording ? '松开发送' : '按住说话'}}
+      </view>
+      <view class="keyboard-icon" bindtap="switchMode">
+        <text>⌨️</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 历史对话列表侧边栏 -->
+  <view class="history-sidebar {{isHistorySidebarOpen ? 'open' : ''}}">
+    <view class="sidebar-header">
+      <text>历史对话</text>
+      <view class="close-btn" bindtap="hideHistoryList">×</view>
+    </view>
+    
+    <!-- 新建对话按钮 -->
+    <view class="create-conversation" bindtap="createNewConversation">
+      <text class="add-icon">+</text>
+      <text>新建对话</text>
+    </view>
+    
+    <view class="history-list">
+      <block wx:for="{{conversationList}}" wx:key="id">
+        <view class="history-item" bindtap="selectConversation" data-id="{{item.id}}">
+          <view class="history-content">
+            <text class="history-title">{{item.title || '对话 ' + (index + 1)}}</text>
+            <text class="history-date">{{item.date}}</text>
+          </view>
+          <view class="delete-btn" catchtap="deleteConversation" data-id="{{item.id}}">
+            <text>×</text>
+          </view>
+        </view>
+      </block>
+      <view wx:if="{{conversationList.length === 0}}" class="empty-history">
+        <text>暂无历史对话</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 录音状态提示 -->
+  <view class="status-indicator" wx:if="{{statusText}}">
+    <text>{{statusText}}</text>
+  </view>
+  
+  <!-- 遮罩层 -->
+  <view class="mask" wx:if="{{isHistorySidebarOpen}}" bindtap="hideHistoryList"></view>
+</view> 

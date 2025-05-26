@@ -1,0 +1,12 @@
+{
+  "name": "daily-record",
+  "version": "1.0.0",
+  "description": "一个日常复盘小程序",
+  "main": "app.js",
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "author": "",
+  "license": "ISC"
+} 
